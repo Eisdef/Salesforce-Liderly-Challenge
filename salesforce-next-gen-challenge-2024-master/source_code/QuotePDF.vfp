@@ -1,0 +1,52 @@
+<apex:page renderAs="pdf" standardController="Contract">
+    <h1>
+        Quote
+    </h1>
+    <apex:pageBlock title="Stundent information">
+        <apex:pageBlockSection columns="1">
+            <apex:outputField value="{! Contract.CustomerSigned.Name}" />
+            <apex:outputField value="{! Contract.CustomerSigned.Register__c}" />
+            <apex:outputField value="{! Contract.CustomerSigned.Campus__c}" />
+            <apex:outputField value="{! Contract.CustomerSigned.Grade_Point_Average__c}" />          
+        </apex:pageBlockSection>          
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="Quote information and discounts">
+        <apex:pageBlockSection columns="1">
+            <apex:outputField value="{! Contract.Number_of_Subjects__C}" />
+            <apex:outputField value="{! Contract.Term__C}" />
+            <apex:outputField value="{! Contract.Excellence_Scholarship__c}" />
+            <apex:outputField value="{! Contract.Sports_Scholarship__c}" />
+            <apex:outputField value="{! Contract.Teaching_Relatives_Scholarship__c}" />
+            <apex:outputField value="{! Contract.Economic_Need_Scholarship__c}" />
+            <apex:outputField value="{! Contract.Payment_Method__c}" />
+            <apex:outputPanel rendered="{!Contract.Payment_Method__c == 'Cash'}">
+                <h3>Payment deadline: </h3>
+                <p>July 10</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!Contract.Payment_Method__c == 'Monthly' && Contract.Term__c == 'Quarterly'}">
+                <h3>Monthly payment deadlines: </h3>
+                <p>July 10</p>
+                <p>August 10</p>
+                <p>September 10</p>
+                <p>October 10</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!Contract.Payment_Method__c == 'Monthly' && Contract.Term__c == 'Biannual'}">
+                <h3>Monthly payment deadlines: </h3>
+                <p>July 10</p>
+                <p>August 10</p>
+                <p>September 10</p>
+                <p>October 10</p>
+                <p>November 10</p>
+                <p>December 10</p>
+            </apex:outputPanel>
+        </apex:pageBlockSection>          
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="Payment">
+        <apex:pageBlockSection columns="1">
+            <apex:outputField value="{! Contract.Subtotal__c}" />
+            <apex:outputField value="{! Contract.Total_Cost__c}" />
+        </apex:pageBlockSection>          
+    </apex:pageBlock>
+</apex:page>
